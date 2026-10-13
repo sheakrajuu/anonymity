@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: stay-connected
+    runtime: node
+    plan: starter
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /
+    disk:
+      name: stay-connected-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+      - key: SESSION_TTL_HOURS
+        value: "720"
+      - key: MAX_MEDIA_BYTES
+        value: "52428800"

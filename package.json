@@ -1,0 +1,16 @@
+{
+  "name": "stay-connected",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Let's Chat Anonymously: temporary messaging with end-to-end encrypted media",
+  "engines": {
+    "node": ">=22.5.0 <23"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

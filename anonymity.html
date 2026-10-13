@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Let's Chat Anonymously</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <symbol id="icon-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol>
+  <symbol id="icon-link" viewBox="0 0 24 24"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="icon-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></symbol>
+  <symbol id="icon-users" viewBox="0 0 24 24"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></symbol>
+  <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+  <symbol id="icon-paperclip" viewBox="0 0 24 24"><path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551"/></symbol>
+  <symbol id="icon-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
+  <symbol id="icon-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></symbol>
+  <symbol id="icon-video" viewBox="0 0 24 24"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
+  <symbol id="icon-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="icon-more" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></symbol>
+  <symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1a1.7 1.7 0 0 1-2.4 2.4l-.1-.1a1.7 1.7 0 0 0-2.9 1.2v.2a1.7 1.7 0 0 1-3.4 0v-.2a1.7 1.7 0 0 0-2.9-1.2l-.1.1a1.7 1.7 0 0 1-2.4-2.4l.1-.1a1.7 1.7 0 0 0-1.2-2.9H4a1.7 1.7 0 0 1 0-3.4h.2a1.7 1.7 0 0 0 1.2-2.9l-.1-.1a1.7 1.7 0 0 1 2.4-2.4l.1.1a1.7 1.7 0 0 0 2.9-1.2V2a1.7 1.7 0 0 1 3.4 0v.2a1.7 1.7 0 0 0 2.9 1.2l.1-.1a1.7 1.7 0 0 1 2.4 2.4l-.1.1a1.7 1.7 0 0 0 1.2 2.9h.2a1.7 1.7 0 0 1 0 3.4h-.2a1.7 1.7 0 0 0-1.2 2.9Z"/></symbol>
+</svg>
+<div class="app" id="app" data-view="list">
+  <section class="side" aria-label="Conversations">
+    <div class="hot">
+      <div class="search">
+        <label><svg class="ico" aria-hidden="true"><use href="#icon-search"/></svg><input id="q" type="search" placeholder="Search" aria-label="Search conversations"></label>
+        <button class="iconbtn account-settings" id="openSettings" aria-label="Settings and privacy" title="Settings and privacy" hidden><svg class="ico" aria-hidden="true"><use href="#icon-settings"/></svg></button>
+        <button class="iconbtn" id="joinbtn" aria-label="Join using a temporary ID" title="Join with a temporary ID"><svg class="ico" aria-hidden="true"><use href="#icon-link"/></svg></button>
+        <button class="iconbtn" id="newbtn" aria-label="Create a temporary conversation ID" title="Create temporary ID"><svg class="ico" aria-hidden="true"><use href="#icon-plus"/></svg></button>
+      </div>
+      <h1><span>Let's Chat</span>Anonymously</h1>
+      <div class="room-meta account-area" id="accountMeta">Sign in to access private conversations.</div>
+    </div>
+    <div class="list" id="list"></div>
+  </section>
+
+  <section class="chat" aria-label="Chat">
+    <div class="hot pane">
+      <div class="chead">
+        <button class="iconbtn back" id="back" aria-label="Back to conversations"><svg class="ico" aria-hidden="true"><use href="#icon-chevron-left"/></svg></button>
+        <span class="av" id="hav"></span>
+        <div class="who" id="who"></div>
+        <div class="owner-controls">
+          <button class="pill leave-room" id="leaveRoom" aria-label="Leave conversation" title="Leave conversation"><svg class="ico" aria-hidden="true"><use href="#icon-chevron-left"/></svg></button>
+          <button class="pill" id="shareInvite" aria-label="Share temporary conversation ID" title="Share invite ID"><svg class="ico" aria-hidden="true"><use href="#icon-share"/></svg></button>
+          <button class="pill" id="members" aria-label="Manage conversation members" title="Manage members"><svg class="ico" aria-hidden="true"><use href="#icon-users"/></svg></button>
+          <button class="pill" id="endRoom" aria-label="End conversation" title="End temporary session"><svg class="ico" aria-hidden="true"><use href="#icon-trash"/></svg></button>
+          <button class="pill contact-action" id="blockContact" aria-label="Block this contact" title="Block this contact" hidden>Block</button>
+          <button class="pill contact-action" id="removeContact" aria-label="Remove this contact" title="Remove this contact" hidden>Remove</button>
+          <div class="room-options-wrap">
+            <button class="pill" id="roomOptions" aria-label="Conversation options" title="Conversation options" aria-expanded="false"><svg class="ico" aria-hidden="true"><use href="#icon-more"/></svg></button>
+            <div class="room-menu" id="roomMenu" hidden>
+              <div class="room-menu-policy"><span><strong>The host can delete this temporary chat at any time.</strong><small>Ending it immediately removes its server-held messages, files, invite ID, and encryption-key packages.</small></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="msgs" id="msgs" aria-live="polite"></div>
+    </div>
+    <div class="bar">
+      <div id="selectedPreview" class="preview" hidden></div>
+      <div class="transfer" id="composerStatus" role="status" hidden></div>
+      <div class="attach-menu" id="attachMenu" hidden>
+        <button type="button" data-picker="photoInput"><svg class="ico" aria-hidden="true"><use href="#icon-image"/></svg>Photo</button>
+        <button type="button" data-picker="videoInput"><svg class="ico" aria-hidden="true"><use href="#icon-video"/></svg>Video</button>
+        <button type="button" data-picker="fileInput"><svg class="ico" aria-hidden="true"><use href="#icon-paperclip"/></svg>Choose file</button>
+        <button type="button" class="menu-close" data-menu-close><svg class="ico" aria-hidden="true"><use href="#icon-x"/></svg>Cancel</button>
+      </div>
+      <form id="f">
+        <button class="attach" type="button" id="attach" aria-label="Attach media" aria-expanded="false"><svg class="ico" aria-hidden="true"><use href="#icon-paperclip"/></svg></button>
+        <input id="t" placeholder="Your Message..." aria-label="Your message" autocomplete="off">
+        <button class="send" aria-label="Send message"><svg class="ico" aria-hidden="true"><use href="#icon-send"/></svg></button>
+      </form>
+      <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden>
+      <input id="videoInput" type="file" accept="video/mp4,video/webm" hidden>
+      <input id="fileInput" type="file" multiple hidden>
+    </div>
+  </section>
+</div>
+
+<dialog id="dlg" class="room-dialog">
+  <form id="df">
+    <h2 id="roomDialogTitle">Create a temporary conversation</h2>
+    <p id="roomDialogHelp">Choose a private name and participant limit. The temporary invite ID is only shown when you choose to share it.</p>
+    <div id="createFields">
+      <label class="field-label" for="roomName">Conversation name</label>
+      <input class="dialog-input" id="roomName" placeholder="e.g. Weekend plans" minlength="1" maxlength="48" autocomplete="off" required>
+      <label class="field-label" for="maxMembers">Maximum participants, including you</label>
+      <input class="dialog-input participant-limit" id="maxMembers" type="number" inputmode="numeric" min="2" max="20" value="10" required>
+      <p>Only the host can end the conversation. When the host chooses Leave or End, all server-held room data is deleted immediately.</p>
+    </div>
+    <div id="joinFields" hidden>
+      <label class="field-label" for="joinCode">Temporary conversation ID</label>
+      <input class="dialog-input" id="joinCode" placeholder="Paste the ID shared by the host" maxlength="64" autocomplete="off">
+    </div>
+    <div class="acts"><button type="button" class="btn" id="dc">Cancel</button><button type="button" class="dialog-switch" id="dialogMode">Have an ID? Join instead</button><button class="btn go" id="roomAction">Create session</button></div>
+  </form>
+</dialog>
+<dialog id="settingsDialog" class="room-dialog settings-dialog">
+  <h2>Account &amp; privacy</h2>
+  <p class="settings-intro">Manage your private account ID, permanent conversations, and blocked accounts.</p>
+  <section class="settings-section" aria-labelledby="identityHeading">
+    <h3 id="identityHeading">Permanent account ID</h3>
+    <p>Keep this ID private and share it only with people you want to add.</p>
+    <div class="account-id-card">
+      <div class="account-id-copy">
+        <span>Your ID</span>
+        <code id="settingsAccountId">••••••••••••••••</code>
+      </div>
+      <div class="account-id-actions">
+        <button type="button" id="revealAccountId">Show ID</button>
+        <button type="button" id="copySettingsId" hidden>Copy</button>
+      </div>
+    </div>
+  </section>
+  <section class="settings-section" aria-labelledby="contactsHeading">
+    <h3 id="contactsHeading">Permanent contacts</h3>
+    <p>Add someone with their permanent ID to start a private, end-to-end encrypted chat.</p>
+    <form id="addContactForm" class="contact-add-form">
+      <label class="field-label" for="contactUserId">Account ID</label>
+      <input class="dialog-input" id="contactUserId" placeholder="Paste a permanent account ID" autocomplete="off" required>
+      <div class="acts"><button class="btn go">Add contact</button></div>
+    </form>
+    <div class="settings-list" id="settingsContacts"></div>
+  </section>
+  <section class="settings-section" aria-labelledby="blockedHeading">
+    <h3 id="blockedHeading">Blocked accounts</h3>
+    <p>Blocked accounts cannot access your permanent conversation with them.</p>
+    <div class="settings-list" id="settingsBlocks"></div>
+  </section>
+  <div class="acts settings-footer"><button type="button" class="btn sign-out-button" id="settingsSignOut">Sign out</button><button type="button" class="btn go" id="settingsClose">Done</button></div>
+</dialog>
+<dialog id="endRoomDialog" class="room-dialog">
+  <h2>End this conversation?</h2>
+  <p id="endRoomMessage">The host will end this conversation for everyone.</p>
+  <div class="acts"><button type="button" class="btn" id="endRoomCancel">Keep chatting</button><button type="button" class="btn go" id="endRoomConfirm">End and delete now</button></div>
+</dialog>
+<dialog id="signOutDialog" class="room-dialog">
+  <h2>Sign out of this device?</h2>
+  <p>Your account and conversations remain available. Leaving or signing out does not end a temporary conversation; only its host can delete it.</p>
+  <div class="acts"><button type="button" class="btn" id="signOutCancel">Stay signed in</button><button type="button" class="btn go" id="signOutConfirm">Sign out</button></div>
+</dialog>
+<dialog id="inviteDialog" class="room-dialog">
+  <h2>Share temporary ID</h2>
+  <p class="invite-help">Only authenticated participants who join with this ID can request access. The ID is invalidated when the host leaves or ends this room and cannot decrypt media on its own.</p>
+  <code class="invite-code" id="inviteCodeText"></code>
+  <div class="acts"><button type="button" class="btn" id="inviteClose">Close</button><button type="button" class="btn go" id="copyInvite">Copy ID</button></div>
+</dialog>
+<dialog id="membersDialog" class="room-dialog">
+  <form id="membersForm">
+    <h2>Manage participants</h2>
+    <p class="invite-help">Removing a participant revokes their server access, rotates the encryption key, and replaces the shared invite ID.</p>
+    <label class="field-label" for="removeMember">Remove participant</label>
+    <select class="dialog-select" id="removeMember" required></select>
+    <div class="acts"><button type="button" class="btn" id="membersCancel">Cancel</button><button class="btn go">Remove & rotate key</button></div>
+  </form>
+</dialog>
+<dialog id="authDialog" class="auth-dialog">
+  <form id="authForm">
+    <h2 id="authTitle">Checking sign-in…</h2>
+    <p id="authHelp">Checking whether this device still has a signed-in account.</p>
+    <p id="authIdentity" hidden></p>
+    <input class="dialog-input" id="authUser" autocomplete="username" placeholder="Username" minlength="3" maxlength="24" required>
+    <input class="dialog-input" id="authPassword" type="password" autocomplete="current-password" placeholder="Account password (12+ characters)" minlength="12" maxlength="128" required>
+    <input class="dialog-input" id="vaultPassphrase" type="password" autocomplete="off" placeholder="Encryption passphrase" minlength="12" maxlength="128" required>
+    <div class="transfer" id="authStatus" role="status"></div>
+    <div class="acts"><button type="button" class="linkbtn" id="authMode">Need an account? Register</button><button class="btn go" id="authSubmit">Sign in</button></div>
+  </form>
+</dialog>
+<dialog id="viewer" class="viewer">
+  <button type="button" class="btn viewer-close" id="viewerClose">Close</button>
+  <img id="viewerImage" alt="" hidden>
+  <video id="viewerVideo" controls playsinline hidden></video>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
